@@ -1,3 +1,10 @@
+import pytesseract
+import PIL.Image
+import cv2
+import os
+import re
+import pandas as pd
+
 def image_processing(image_path: str):
     """Process an anime image to extract specific regions of interest (ROIs).
 
@@ -18,6 +25,9 @@ def image_processing(image_path: str):
         # load the image using PIL
         image = PIL.Image.open(image_path)
         width, height = image.size
+        
+        # ROI = region of interest 
+        roi = (0, 0, width * 3 // 5, height)        
 
         # crop the image to the defined region 
         cropped_image = image.crop(roi)
